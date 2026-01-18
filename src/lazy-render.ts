@@ -51,7 +51,8 @@ export const LazyRender = defineComponent<LazyRenderProps>({
       default: undefined,
     },
   },
-  setup(props, { slots }) {
+  emits: ['change'],
+  setup(props, { slots, emit }) {
     const containerRef = ref<HTMLElement | null>(null)
     const { isVisible } = useIntersectionObserver(
       containerRef,
@@ -65,7 +66,7 @@ export const LazyRender = defineComponent<LazyRenderProps>({
     // eslint-disable-next-line ts/no-unsafe-function-type
     let render: Function | null
     let currentVNode: VNode | null = null
-
+    let called = false
     watch(
       isVisible,
       (visible) => {
@@ -74,12 +75,19 @@ export const LazyRender = defineComponent<LazyRenderProps>({
           containerRef.value = currentVNode.el as HTMLElement
           if (!visible) {
             const _render = component.render
-            component.render = () => component.subTree
+            component.render = () => {
+              called = true
+              return component.subTree
+            }
             render = _render
           }
           else {
             component.render = render || component.render
+            if (called) {
+              component.update()
+            }
           }
+          emit('change', visible)
         }
       },
       { flush: 'post' },
