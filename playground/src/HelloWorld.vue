@@ -5,7 +5,7 @@ const mounted = ref(false)
 
 onMounted(() => {
   mounted.value = true
-  console.log('HeavyComponent mounted!')
+  console.log('HelloWorld mounted!')
 })
 </script>
 

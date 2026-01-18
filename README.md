@@ -27,7 +27,7 @@ import { LazyRender } from 'vuedefer'
 
 <template>
   <LazyRender>
-    <HeavyComponent />
+    <HelloWorld />
     <template #fallback>
       <div class="placeholder">Loading...</div>
     </template>
@@ -45,7 +45,7 @@ Components are mounted and rendered only when they enter the viewport:
 <script setup lang="ts">
 import { ref } from 'vue'
 import { LazyRender } from 'vuedefer'
-import HeavyComponent from './HeavyComponent.vue'
+import HelloWorld from './HelloWorld.vue'
 
 const isMounted = ref(false)
 </script>
@@ -64,7 +64,7 @@ const isMounted = ref(false)
 
     <!-- Lazy loaded component -->
     <LazyRender>
-      <HeavyComponent @vue:mounted="isMounted = true" />
+      <HelloWorld @vue:mounted="isMounted = true" />
       <template #fallback>
         <div class="placeholder">Loading...</div>
       </template>

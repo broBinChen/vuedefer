@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { LazyRender } from '../../src'
-import HeavyComponent from './HeavyComponent.vue'
+import HelloWorld from './HelloWorld.vue'
 
 const isMounted = ref(false)
 </script>
@@ -20,9 +20,9 @@ const isMounted = ref(false)
       <p>👇 Keep scrolling...</p>
     </div>
 
-    <!-- LazyRender will only render HeavyComponent when it enters viewport -->
+    <!-- LazyRender will only render HelloWorld when it enters viewport -->
     <LazyRender>
-      <HeavyComponent @vue:mounted="isMounted = true" />
+      <HelloWorld @vue:mounted="isMounted = true" />
       <template #fallback>
         <div class="placeholder">
           Loading...
