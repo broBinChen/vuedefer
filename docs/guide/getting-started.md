@@ -84,6 +84,7 @@ Try scrolling in the box below to see lazy loading in action:
 
 ::: tip Notice
 - **Status indicator** shows whether the component is mounted
+- **Viewport status** shows whether the component is currently visible in the viewport
 - **Update Count** increments every second - when the component leaves viewport, updates are frozen
 - Scroll the component out of view and back to observe the freeze/resume behavior
 :::
