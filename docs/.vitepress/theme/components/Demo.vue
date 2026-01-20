@@ -9,7 +9,7 @@ const scrollContainer = ref<HTMLElement | null>(null)
 
 // 模拟数据更新
 setInterval(() => {
-  updateCount.value++
+  isMounted.value && (updateCount.value++)
 }, 1000)
 </script>
 
